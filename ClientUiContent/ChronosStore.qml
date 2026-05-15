@@ -82,7 +82,10 @@ QtObject {
                 humanRegister: 40001,
                 backendAddress: 1,
                 plcMinute: plcMinute,
+                plcMinuteText: String(plcMinute).padStart(2, "0"),
                 refMinute: referenceMinute,
+            refMinuteText: String(referenceMinute).padStart(2, "0"),
+                refMinuteText: String(referenceMinute).padStart(2, "0"),
                 driftMin: normalizeDrift(plcMinute, referenceMinute),
                 lastWriteUtc: "09:" + String((10 + i) % 60).padStart(2, "0") + ":" + String((20 + i) % 60).padStart(2, "0"),
                 carrier: carriers[i % carriers.length],
@@ -142,6 +145,7 @@ QtObject {
         var now = new Date()
         updateSite(siteId, {
             plcMinute: minuteValue,
+            plcMinuteText: String(minuteValue).padStart(2, "0"),
             lastWriteUtc: String(now.getUTCHours()).padStart(2, "0") + ":" + String(now.getUTCMinutes()).padStart(2, "0") + ":" + String(now.getUTCSeconds()).padStart(2, "0")
         })
         appendAudit("ok", "audit", siteId + " HR40001 confirmed value=" + minuteValue)

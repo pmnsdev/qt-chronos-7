@@ -13,16 +13,18 @@ Rectangle {
     property var gateway
     property var toast
     property int activeTab: 0
+    property string clockTextString: "Loading..."
+    property string lteStatusText: "lte ok 0/0"
     property var tabLabels: ["OVERVIEW", "SITE FLEET", "MODBUS / LTE", "ALARMS", "AUDIT"]
 
-    signal tabSelected(int index)
+
 
     Rectangle {
         anchors.fill: parent
         color: ChronosTokens.background
 
         Repeater {
-            model: Math.ceil(parent.width / 32)
+            model: (parent.width + 31) / 32
             Rectangle {
                 x: index * 32
                 width: 1
@@ -32,7 +34,7 @@ Rectangle {
             }
         }
         Repeater {
-            model: Math.ceil(parent.height / 32)
+            model: (parent.height + 31) / 32
             Rectangle {
                 y: index * 32
                 width: parent.width
@@ -90,15 +92,10 @@ Rectangle {
                     font.pixelSize: 14
                     font.bold: true
                     font.family: ChronosTokens.monoFont
-                    text: Qt.formatDateTime(new Date(), "yyyy-MM-dd hh:mm:ss") + " UTC"
+                    text: root.clockTextString
                 }
 
-                Timer {
-                    interval: 1000
-                    running: true
-                    repeat: true
-                    onTriggered: clockText.text = Qt.formatDateTime(new Date(), "yyyy-MM-dd hh:mm:ss") + " UTC"
-                }
+
             }
         }
 
@@ -138,7 +135,7 @@ Rectangle {
 
                         MouseArea {
                             anchors.fill: parent
-                            onClicked: root.tabSelected(index)
+                            onClicked: root.activeTab = index
                         }
                     }
                 }
@@ -173,7 +170,7 @@ Rectangle {
 
                 StatusLed { severity: "ok"; label: "scheduler ARMED"; blinkOnCritical: false }
                 Text { text: "modbus 119/128 acks"; color: ChronosTokens.mutedText; font.pixelSize: 11; font.family: ChronosTokens.monoFont }
-                Text { text: "lte ok " + (root.store ? root.store.countOnline() : 0) + "/" + (root.store ? root.store.sites.length : 0); color: ChronosTokens.mutedText; font.pixelSize: 11; font.family: ChronosTokens.monoFont }
+                Text { text: root.lteStatusText; color: ChronosTokens.mutedText; font.pixelSize: 11; font.family: ChronosTokens.monoFont }
                 Text { text: "gateway " + (root.gateway ? root.gateway.gatewayUrl : "not attached"); color: ChronosTokens.mutedText; font.pixelSize: 11; font.family: ChronosTokens.monoFont }
                 Item { Layout.fillWidth: true }
                 Text { text: "embedded .ui.qml display component"; color: ChronosTokens.faintText; font.pixelSize: 11; font.family: ChronosTokens.monoFont }
