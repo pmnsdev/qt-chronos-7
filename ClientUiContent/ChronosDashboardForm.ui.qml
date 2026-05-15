@@ -5,8 +5,8 @@ import ClientUi
 
 Rectangle {
     id: root
-    width: 1600
-    height: 950
+    width: 1920
+    height: 1080
     color: ChronosTokens.background
 
     property var store

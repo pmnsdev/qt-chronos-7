@@ -5,8 +5,8 @@ import ClientUi
 
 Window {
     id: appWindow
-    width: 1600
-    height: 950
+    width: 1920
+    height: 1080
     minimumWidth: 1180
     minimumHeight: 720
     visible: true
