@@ -1,0 +1,34 @@
+<RCC>
+    <qresource>
+        <file>ClientUi/AlarmRow.qml</file>
+        <file>ClientUi/AuditLine.qml</file>
+        <file>ClientUi/ChronosPanel.qml</file>
+        <file>ClientUi/ChronosPanelHeader.qml</file>
+        <file>ClientUi/ChronosTokens.qml</file>
+        <file>ClientUi/CommandToast.qml</file>
+        <file>ClientUi/DriftHistogram.qml</file>
+        <file>ClientUi/FleetStatusCard.qml</file>
+        <file>ClientUi/GatewayStatusCard.qml</file>
+        <file>ClientUi/MinuteDial.qml</file>
+        <file>ClientUi/SeverityTag.qml</file>
+        <file>ClientUi/SignalBars.qml</file>
+        <file>ClientUi/SiteRow.qml</file>
+        <file>ClientUi/StatusLed.qml</file>
+        <file>ClientUi/qmldir</file>
+        <file>ClientUiContent/AlarmsScreen.qml</file>
+        <file>ClientUiContent/AlarmsScreenForm.ui.qml</file>
+        <file>ClientUiContent/App.qml</file>
+        <file>ClientUiContent/AuditScreen.qml</file>
+        <file>ClientUiContent/AuditScreenForm.ui.qml</file>
+        <file>ClientUiContent/ChronosDashboard.qml</file>
+        <file>ClientUiContent/ChronosDashboardForm.ui.qml</file>
+        <file>ClientUiContent/ChronosStore.qml</file>
+        <file>ClientUiContent/GatewayStub.qml</file>
+        <file>ClientUiContent/ModbusLteScreen.qml</file>
+        <file>ClientUiContent/ModbusLteScreenForm.ui.qml</file>
+        <file>ClientUiContent/OverviewScreen.qml</file>
+        <file>ClientUiContent/OverviewScreenForm.ui.qml</file>
+        <file>ClientUiContent/SiteFleetScreen.qml</file>
+        <file>ClientUiContent/SiteFleetScreenForm.ui.qml</file>
+    </qresource>
+</RCC>
