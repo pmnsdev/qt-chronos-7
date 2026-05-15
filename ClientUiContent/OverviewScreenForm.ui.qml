@@ -6,6 +6,15 @@ import ClientUi
 Item {
     id: root
     property var store
+    property var driftValues: []
+    property string countHealthOk: "0"
+    property string countHealthWarn: "0"
+    property string countHealthCrit: "0"
+    property string countOnline: "0"
+    property string referenceMinuteStr: "00"
+    property var worstSites: []
+    property var gatewaysList: []
+
 
     ScrollView {
         anchors.fill: parent
@@ -14,7 +23,7 @@ Item {
         GridLayout {
             x: 14
             y: 14
-            width: Math.max(parent.width - 28, 1180)
+            width: (parent.width - 28 > 1180 ? parent.width - 28 : 1180)
             height: 1160
             columns: 12
             rowSpacing: 12
@@ -30,7 +39,7 @@ Item {
                 DriftHistogram {
                     anchors.fill: parent
                     anchors.margins: 12
-                    values: root.store ? root.store.driftValues() : []
+                    values: root.driftValues
                 }
             }
 
@@ -49,15 +58,15 @@ Item {
                     RowLayout {
                         Layout.fillWidth: true
                         spacing: 10
-                        FleetStatusCard { label: "HEALTHY"; value: String(root.store ? root.store.countHealth("ok") : 0); severity: "ok"; Layout.fillWidth: true }
-                        FleetStatusCard { label: "WARN"; value: String(root.store ? root.store.countHealth("warn") : 0); severity: "warn"; Layout.fillWidth: true }
+                        FleetStatusCard { label: "HEALTHY"; value: root.countHealthOk; severity: "ok"; Layout.fillWidth: true }
+                        FleetStatusCard { label: "WARN"; value: root.countHealthWarn; severity: "warn"; Layout.fillWidth: true }
                     }
 
                     RowLayout {
                         Layout.fillWidth: true
                         spacing: 10
-                        FleetStatusCard { label: "CRITICAL"; value: String(root.store ? root.store.countHealth("crit") : 0); severity: "crit"; Layout.fillWidth: true }
-                        FleetStatusCard { label: "ONLINE"; value: String(root.store ? root.store.countOnline() : 0); severity: "info"; Layout.fillWidth: true }
+                        FleetStatusCard { label: "CRITICAL"; value: root.countHealthCrit; severity: "crit"; Layout.fillWidth: true }
+                        FleetStatusCard { label: "ONLINE"; value: root.countOnline; severity: "info"; Layout.fillWidth: true }
                     }
 
                     Rectangle {
@@ -71,7 +80,7 @@ Item {
                             anchors.fill: parent
                             anchors.margins: 12
                             Text { text: "REFERENCE UTC MINUTE"; color: ChronosTokens.faintText; font.pixelSize: 10; font.letterSpacing: 2; font.family: ChronosTokens.monoFont }
-                            Text { text: ":" + String(root.store ? root.store.referenceMinute : 0).padStart(2, "0"); color: ChronosTokens.info; font.pixelSize: 42; font.bold: true; font.family: ChronosTokens.monoFont }
+                            Text { text: ":" + root.referenceMinuteStr; color: ChronosTokens.info; font.pixelSize: 42; font.bold: true; font.family: ChronosTokens.monoFont }
                             Text { text: "Smallest writable unit: one minute, value 0..59"; color: ChronosTokens.mutedText; font.pixelSize: 11; font.family: ChronosTokens.monoFont; wrapMode: Text.WordWrap; Layout.fillWidth: true }
                         }
                     }
@@ -100,13 +109,13 @@ Item {
 
                     GridLayout {
                         id: worstGrid
-                        width: Math.max(worstScroll.width - 8, 260)
+                        width: (worstScroll.width - 8 > 260 ? worstScroll.width - 8 : 260)
                         columns: width >= 860 ? 3 : width >= 580 ? 2 : 1
                         rowSpacing: 10
                         columnSpacing: 10
 
                         Repeater {
-                            model: root.store ? root.store.worstSites(6, root.store.revision) : []
+                            model: root.worstSites
                             Rectangle {
                                 Layout.fillWidth: true
                                 Layout.minimumWidth: 260
@@ -153,7 +162,7 @@ Item {
                                             Layout.fillWidth: true
                                         }
                                         Text {
-                                            text: "PLC :" + String(modelData.plcMinute).padStart(2, "0") + " / UTC :" + String(modelData.refMinute).padStart(2, "0")
+                                            text: "PLC :" + modelData.plcMinuteText + " / UTC :" + modelData.refMinuteText
                                             color: ChronosTokens.info
                                             font.pixelSize: 11
                                             font.family: ChronosTokens.monoFont
@@ -193,7 +202,7 @@ Item {
                     anchors.margins: 12
                     clip: true
                     spacing: 8
-                    model: root.store ? root.store.gateways : []
+                    model: root.gatewaysList
                     delegate: GatewayStatusCard {
                         width: ListView.view.width
                         gatewayId: modelData.id

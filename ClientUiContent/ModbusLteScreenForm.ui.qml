@@ -118,7 +118,22 @@ Item {
                             spacing: 14
                             Text { text: modelData.step; color: ChronosTokens.info; font.pixelSize: 18; font.bold: true; font.family: ChronosTokens.monoFont; Layout.preferredWidth: 72 }
                             StatusLed { severity: modelData.severity }
-                            ColumnLayout { Layout.fillWidth: true; Text { text: modelData.title; color: ChronosTokens.foreground; font.pixelSize: 14; font.bold: true; font.family: ChronosTokens.monoFont }; Text { text: modelData.detail; color: ChronosTokens.mutedText; font.pixelSize: 11; font.family: ChronosTokens.monoFont } }
+                            ColumnLayout {
+                                Layout.fillWidth: true
+                                Text {
+                                    text: modelData.title
+                                    color: ChronosTokens.foreground
+                                    font.pixelSize: 14
+                                    font.bold: true
+                                    font.family: ChronosTokens.monoFont
+                                }
+                                Text {
+                                    text: modelData.detail
+                                    color: ChronosTokens.mutedText
+                                    font.pixelSize: 11
+                                    font.family: ChronosTokens.monoFont
+                                }
+                            }
                             SeverityTag { text: modelData.state; severity: modelData.severity }
                         }
                     }
