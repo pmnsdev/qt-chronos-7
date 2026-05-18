@@ -5,10 +5,10 @@ import ClientUi
 
 Window {
     id: appWindow
-    width: 1600
-    height: 950
-    minimumWidth: 1180
-    minimumHeight: 720
+    width: 1920
+    height: 1080
+    minimumWidth: 1880
+    minimumHeight: 960
     visible: true
     title: "CHRONOS-7 Display - Qt Design Studio Project"
     color: ChronosTokens.background

@@ -23,8 +23,8 @@ Item {
         GridLayout {
             x: 14
             y: 14
-            width: (parent.width - 28 > 1180 ? parent.width - 28 : 1180)
-            height: 1160
+            width: (parent.width - 28 > 1880 ? parent.width - 28 : 1880)
+            height: 960
             columns: 12
             rowSpacing: 12
             columnSpacing: 12
@@ -34,7 +34,7 @@ Item {
                 kicker: "01"
                 Layout.columnSpan: 8
                 Layout.fillWidth: true
-                Layout.preferredHeight: 310
+                Layout.preferredHeight: 380
 
                 DriftHistogram {
                     anchors.fill: parent
@@ -48,7 +48,7 @@ Item {
                 kicker: "02"
                 Layout.columnSpan: 4
                 Layout.fillWidth: true
-                Layout.preferredHeight: 310
+                Layout.preferredHeight: 380
 
                 ColumnLayout {
                     anchors.fill: parent
@@ -92,7 +92,7 @@ Item {
                 kicker: "03"
                 Layout.columnSpan: 12
                 Layout.fillWidth: true
-                Layout.preferredHeight: 420
+                Layout.preferredHeight: 480
 
                 // Responsive fix:
                 // The original 3-column grid could compress each offender card until
@@ -195,7 +195,7 @@ Item {
                 kicker: "04"
                 Layout.columnSpan: 12
                 Layout.fillWidth: true
-                Layout.preferredHeight: 310
+                Layout.preferredHeight: 380
 
                 ListView {
                     anchors.fill: parent
